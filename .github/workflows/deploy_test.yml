@@ -1,0 +1,16 @@
+name: Testar_Noturno
+
+on:
+  schedule:
+    - cron: '0 23 * * * '
+  push:
+    branchs:
+      - main
+jobs:
+  teste_noturno:
+    runs-on: self-hosted
+    steps: 
+      - name: "Iniciando JOB"
+        run: |
+          echo "Iniciando JOB em $(date)"
+  
