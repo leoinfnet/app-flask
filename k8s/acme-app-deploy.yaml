@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: acme
+  name: flask-acme
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask-acme
+  template:
+    metadata:
+      labels: 
+        app: flask-acme
+    spec:
+      containers:
+        - name: flask-acme
+          image: leogloriainfnet/flask-acme:latest
+          ports:
+            - containerPort: 9090
+          imagePullPolicy: Always
