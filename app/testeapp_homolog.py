@@ -10,7 +10,7 @@ class FlaskTestCase(unittest.TestCase):
         response = self.app.get('http://localhost:30091/')
         self.assertEqual(response.status_code, 200)
         json_data = response.get_json()
-        self.assertEqual(json_data['message'], 'Hello, World3!')
+        self.assertEqual(json_data['message'], 'Hello, World5!')
     def test_status(self):
         response = self.app.get('http://localhost:30091/status')
         self.assertEqual(response.status_code, 200)

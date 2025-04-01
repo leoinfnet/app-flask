@@ -31,3 +31,24 @@ jobs:
       - name: Deploy on K8s
         run: |
           kubectl rollout restart deploy flask-acme -n acme 
+      - name: Verify Deploy
+        run: |
+          kubectl rollout status deploy flask-acme -n acme
+      - name: "Executar Testes"
+        continue-on-error: false
+        run: |
+          cd app/
+          python -m unittest testeapp_homolog.py
+      - name: "Notificar Falha"
+        if: failure()
+        run: | 
+         curl -H "Content-Type: application/json" \
+               -X POST \
+               -d '{"username": "GitHub Actions", "content": "🚨 **Os testes falharam!** Verifique os logs no GitHub Actions."}' \
+               ${{ secrets.DISCORD_WEB_HOOK }}
+      - name: "Notificar Sucesso"
+        run: | 
+         curl -H "Content-Type: application/json" \
+               -X POST \
+               -d '{"username": "GitHub Actions", "content": "🚨 **Os testes Funcionaram!** Verifique os logs no GitHub Actions."}' \
+               ${{ secrets.DISCORD_WEB_HOOK }}
