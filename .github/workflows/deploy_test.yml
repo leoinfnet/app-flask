@@ -5,7 +5,7 @@ on:
     - cron: '0 23 * * * '
   push:
     branchs:
-      - main
+      - main2
 jobs:
   teste_noturno:
     runs-on: self-hosted
