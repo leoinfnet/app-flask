@@ -13,4 +13,6 @@ jobs:
       - name: "Iniciando JOB"
         run: |
           echo "Iniciando JOB em $(date)"
+      - name: "Checkout codigo"
+        uses: actions/checkout@v4
   
