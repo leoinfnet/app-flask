@@ -15,4 +15,6 @@ jobs:
           echo "Iniciando JOB em $(date)"
       - name: "Checkout codigo"
         uses: actions/checkout@v4
+      - name: "Configurar Ambiente"
+        uses: actions/setup-python@v5
   
