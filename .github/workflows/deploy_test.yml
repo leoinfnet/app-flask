@@ -30,9 +30,8 @@ jobs:
           python -m unittest testeapp_homolog.py
       - name: "Notificar Falha"
         if: failure()
-        run | 
+        run: | 
          curl -H "Content-Type: application/json" \
                -X POST \
                -d '{"username": "GitHub Actions", "content": "🚨 **Os testes falharam!** Verifique os logs no GitHub Actions."}' \
-               https://discord.com/api/webhooks/1356421161793093644/ms8q7PWPrrDwO6n3-2NiEqGTQSr4EAH8f_IfHPS3a058TQx96Oiy3srHtDjm71CtL3CH
-  
+               ${{ secrets.DISCORD_WEB_HOOK }}
